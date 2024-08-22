@@ -22,5 +22,13 @@ namespace DepartmanProjesi.Controllers
             c.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult DepartmanSil(int id)
+        {
+            var dep = c.departmanlars.Find(id);
+            c.departmanlars.Remove(dep);
+            c.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
