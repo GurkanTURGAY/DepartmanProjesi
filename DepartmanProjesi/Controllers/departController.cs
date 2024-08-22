@@ -10,5 +10,16 @@ namespace DepartmanProjesi.Controllers
             var degerler = c.departmanlars.ToList();
             return View(degerler);
         }
+        [HttpGet]
+        public IActionResult YeniDepartman()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult YeniDepartman(departmanlar d)
+        {
+
+            return View();
+        }
     }
 }
