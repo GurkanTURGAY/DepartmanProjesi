@@ -30,5 +30,10 @@ namespace DepartmanProjesi.Controllers
             c.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult DepartmanGetir(int id)
+        {
+            var depart = c.departmanlars.Find(id);
+            return View("DepartmanGetir",depart);
+        }
     }
 }
