@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DepartmanProjesi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240822102932_mig1")]
+    [Migration("20240822120822_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -53,6 +53,9 @@ namespace DepartmanProjesi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("departid")
+                        .HasColumnType("int");
+
                     b.Property<string>("sehir")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -63,7 +66,25 @@ namespace DepartmanProjesi.Migrations
 
                     b.HasKey("personelid");
 
+                    b.HasIndex("departid");
+
                     b.ToTable("personels");
+                });
+
+            modelBuilder.Entity("DepartmanProjesi.Models.personel", b =>
+                {
+                    b.HasOne("DepartmanProjesi.Models.departmanlar", "depart")
+                        .WithMany("personels")
+                        .HasForeignKey("departid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("depart");
+                });
+
+            modelBuilder.Entity("DepartmanProjesi.Models.departmanlar", b =>
+                {
+                    b.Navigation("personels");
                 });
 #pragma warning restore 612, 618
         }
