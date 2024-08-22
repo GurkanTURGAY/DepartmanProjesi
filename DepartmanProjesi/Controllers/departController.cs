@@ -18,8 +18,9 @@ namespace DepartmanProjesi.Controllers
         [HttpPost]
         public IActionResult YeniDepartman(departmanlar d)
         {
-
-            return View();
+            c.departmanlars.Add(d);
+            c.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
