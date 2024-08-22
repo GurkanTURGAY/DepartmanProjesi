@@ -35,5 +35,12 @@ namespace DepartmanProjesi.Controllers
             var depart = c.departmanlars.Find(id);
             return View("DepartmanGetir",depart);
         }
+        public IActionResult DepartmanGuncelle(departmanlar d)
+        {
+            var dep = c.departmanlars.Find(d.id);
+            dep.departmanad = d.departmanad;
+            c.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
